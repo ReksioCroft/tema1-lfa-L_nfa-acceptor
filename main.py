@@ -7,7 +7,9 @@ def evaluare( cuv, stare, vizitat ):
         else:
             for i in Q[stare]["$"]:
                 if vizitat[i] == False:
-                    raspuns = evaluare( cuv, i, vizitat )
+                    raspuns = raspuns or evaluare( cuv, i, vizitat )
+                    if raspuns == True:
+                        break
     elif cuv[0] in alfabet:
         for i in Q[stare][ cuv[0] ]:
             raspuns = raspuns or evaluare( cuv[1:], i, [ False for i in range(nrStari) ] )

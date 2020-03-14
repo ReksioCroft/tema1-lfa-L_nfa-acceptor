@@ -9,7 +9,7 @@ def evaluare( cuv, stare, vizitat ):
                 if vizitat[i] == False:
                     raspuns = evaluare( cuv, i, vizitat )
     else:
-        for i in Q[stare][cuv[0]]:
+        for i in Q[stare][ cuv[0] ]:
             raspuns = raspuns or evaluare( cuv[1:], i, [ False for i in range(nrStari) ] )
             if raspuns == True:
                 break
@@ -19,8 +19,6 @@ def evaluare( cuv, stare, vizitat ):
                 if raspuns == True:
                     break
     return raspuns
-
-
 
 
 fin = open("automat.in")
@@ -34,16 +32,16 @@ finale = [ int(x) for x in fin.readline().split() ]
 fin.readline()
 Q = [ { j : [] for j in alfabet } for i in range(nrStari) ]
 for i in fin:
-    l = i.split()
-    a = int( l[0] )
-    b = int( l[2] )
-    ch = l[1]
+    ls = i.split()
+    a = int( ls[0] )
+    b = int( ls[2] )
+    ch = ls[1]
     ls = Q[a][ch]
     ls.append( b )
     Q[a][ch] = ls
 fin.close()
 
 teste = open( "teste.in" )
-for cuv in teste:
-    print( evaluare( cuv.strip(" ,\n"), stare0, [ False for i in range(nrStari) ] ) )
+for i in teste:
+    print( evaluare( i.strip(" ,-.;\n"), stare0, [ False for i in range(nrStari) ] ) )
 teste.close()
